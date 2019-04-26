@@ -1,2 +1,3 @@
-# finshir
-Test a server opening hundreds of thousands connections on an ordinary PC
+<div align="center">
+  <h1>Finshir</h1>
+</div>
