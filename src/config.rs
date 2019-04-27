@@ -218,7 +218,7 @@ mod tests {
         let check = |format| {
             assert_eq!(
                 parse_time_format(format),
-                Ok(output),
+                Ok(String::from(format)),
                 "Parses valid time incorrectly"
             )
         };
@@ -234,7 +234,7 @@ mod tests {
     fn parses_invalid_time_format() {
         let check = |format| {
             assert!(
-                parse_time_format(format).is_ok(),
+                parse_time_format(format).is_err(),
                 "Parses invalid time correctly"
             )
         };
@@ -250,7 +250,7 @@ mod tests {
         let check = |num| {
             assert_eq!(
                 parse_non_zero_usize(num),
-                Ok(NonZeroUsize::new(num).unwrap()),
+                Ok(NonZeroUsize::new(num.parse().unwrap()).unwrap()),
                 "Parses valid NonZeroUsize incorrectly"
             )
         };
@@ -265,17 +265,15 @@ mod tests {
     #[test]
     fn parses_invalid_non_zero_usize() {
         let check = |num| {
-            assert_eq!(
+            assert!(
                 parse_non_zero_usize(num).is_err(),
                 "Parses invalid NonZeroUsize correctly"
             )
         };
 
         check("   ");
-
         check("abc5653odr!");
         check("6485&02hde");
-
         check("-565642");
         check(&"2178".repeat(50));
 
