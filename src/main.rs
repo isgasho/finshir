@@ -26,6 +26,7 @@ extern crate log;
 use crate::config::ArgsConfig;
 
 mod config;
+mod helpers;
 mod logging;
 mod tester;
 
