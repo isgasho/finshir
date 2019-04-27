@@ -125,7 +125,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cargo Command.Cargo Fmt">
+  <component name="RunManager" selected="Cargo Command.Cargo Clean">
     <configuration name="Cargo Build Release" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="build --release" />
@@ -149,6 +149,16 @@
     <configuration name="Cargo Check" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="check" />
+      <option name="allFeatures" value="false" />
+      <option name="nocapture" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Cargo Clean" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="clean" />
       <option name="allFeatures" value="false" />
       <option name="nocapture" value="false" />
       <option name="backtrace" value="SHORT" />
@@ -219,6 +229,7 @@
     <list>
       <item itemvalue="Cargo Command.Cargo Fix" />
       <item itemvalue="Cargo Command.Cargo Fmt" />
+      <item itemvalue="Cargo Command.Cargo Clean" />
       <item itemvalue="Cargo Command.Cargo Check" />
       <item itemvalue="Cargo Command.Cargo Run" />
       <item itemvalue="Cargo Command.Cargo Build" />
