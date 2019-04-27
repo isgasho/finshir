@@ -22,31 +22,19 @@
 
 use crate::config::SocketConfig;
 
+use may::{self, coroutine};
 use socks::Socks5Stream;
 
 use std::io;
 use std::net::TcpStream;
 use std::time::Duration;
 
-#[derive(Debug, Clone, Eq, PartialEq)]
-pub struct Tester {
-    socket: TcpStream,
-    write_periodicity: Duration,
-}
+fn init_socket(config: &SocketConfig) -> TcpStream {
+    let socket = match config.tor_proxy {
+        Some(addr) => Socks5Stream::connect(addr, config.receiver)?.into_inner(),
+        None => TcpStream::connect_timeout(&config.receiver, config.connect_timeout)?,
+    };
 
-impl Tester {
-    pub fn setup(config: &SocketConfig) -> io::Result<Tester> {
-        Ok(Tester {
-            socket: {
-                let socket = match config.tor_proxy {
-                    Some(addr) => Socks5Stream::connect(addr, config.receiver)?.into_inner(),
-                    None => TcpStream::connect_timeout(&config.receiver, config.connect_timeout)?,
-                };
-
-                socket.set_write_timeout(Some(config.write_timeout));
-                socket
-            },
-            write_periodicity: config.write_periodicity,
-        })
-    }
+    socket.set_write_timeout(Some(config.write_timeout));
+    socket
 }
