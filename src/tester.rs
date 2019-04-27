@@ -22,19 +22,17 @@
 
 use crate::config::SocketConfig;
 
-use may::{self, coroutine};
 use socks::Socks5Stream;
 
 use std::io;
 use std::net::TcpStream;
-use std::time::Duration;
 
-fn init_socket(config: &SocketConfig) -> TcpStream {
+fn init_socket(config: &SocketConfig) -> io::Result<TcpStream> {
     let socket = match config.tor_proxy {
         Some(addr) => Socks5Stream::connect(addr, config.receiver)?.into_inner(),
         None => TcpStream::connect_timeout(&config.receiver, config.connect_timeout)?,
     };
 
-    socket.set_write_timeout(Some(config.write_timeout));
-    socket
+    socket.set_write_timeout(Some(config.write_timeout))?;
+    Ok(socket)
 }

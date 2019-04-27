@@ -10,3 +10,6 @@ humantime = "1.2.0"
 time = "0.1.42"
 socks = "0.3.2"
 may = "0.3.7"
+colored = "1.7.0"
+log = "0.4.6"
+fern = { version = "0.5.8", features = ["colored"] }
