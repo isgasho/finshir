@@ -112,6 +112,11 @@ pub struct SocketConfig {
         parse(try_from_str = "parse_duration")
     )]
     pub write_periodicity: Duration,
+
+    /// Connect all future sockets to a local tor proxy, specified as an IP
+    /// address or a domain name and a port, separated by a colon.
+    #[structopt(long = "tor-proxy", takes_value = true, value_name = "SOCKET-ADDRESS")]
+    pub tor_proxy: Option<SocketAddr>,
 }
 
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
