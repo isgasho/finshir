@@ -21,10 +21,8 @@
 // SOFTWARE.
 
 use std::io::{self, Write};
-use std::net::SocketAddr;
 use std::num::NonZeroUsize;
 use std::os::unix::io::{FromRawFd, IntoRawFd};
-use std::time::Duration;
 
 use humantime::format_duration;
 use may::coroutine;

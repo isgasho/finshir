@@ -41,7 +41,7 @@ fn main() {
     logging::setup_logging(&config.logging_config);
     trace!("{:?}", config);
 
-    let parsed = match helpers::read_portions(&config.portions_file) {
+    let portions = match helpers::read_portions(&config.portions_file) {
         Ok(res) => res,
         Err(err) => {
             error!("An error occurred while parsing the JSON >>> {}!", err);
@@ -49,13 +49,21 @@ fn main() {
         }
     };
 
-    let portions: Vec<&[u8]> = parsed.iter().map(|vec| vec.as_slice()).collect();
+    let portions: Vec<&[u8]> = portions.iter().map(|vec| vec.as_slice()).collect();
 
     coroutine::scope(|scope| {
-        go!(scope, move || testing::run(
-            &config.tester_config,
-            portions.as_slice()
-        ));
+        let iters = config.connections.get();
+
+        for i in 0..iters {
+            let portions = &portions;
+            let config = &config;
+            go!(scope, move || testing::run(&config.tester_config, portions));
+
+            info!(
+                "{}th coroutine has been spawned successfully.",
+                helpers::cyan(i + 1)
+            );
+        }
     });
 }
 
