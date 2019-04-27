@@ -31,12 +31,13 @@ use may::coroutine;
 use socks::Socks5Stream;
 
 use crate::config::{SocketConfig, TesterConfig};
+use crate::helpers;
 
 type StdSocket = std::net::TcpStream;
 type MaySocket = may::net::TcpStream;
 
 pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
-    let fmt_periodicity = format_duration(config.write_periodicity);
+    let fmt_periodicity = helpers::cyan(format_duration(config.write_periodicity));
 
     loop {
         let mut socket: MaySocket = connect_socket(&config.socket_config);
@@ -46,15 +47,15 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
                 SendPortionResult::Success => {
                     info!(
                         "{} bytes have been sent successfully. Waiting {}...",
-                        portion.len(),
+                        helpers::cyan(portion.len()),
                         fmt_periodicity
                     );
                 }
                 SendPortionResult::Failed(err) => {
                     info!(
                         "Sending {} bytes failed {} times >>> {}! Reconnecting the socket...",
-                        portion.len(),
-                        config.failed_count,
+                        helpers::cyan(portion.len()),
+                        helpers::cyan(config.failed_count),
                         err,
                     );
                     break;
@@ -83,7 +84,7 @@ fn send_portion(
             Err(err) => {
                 error!(
                     "Failed to send {} bytes >>> {}! Retrying the operation...",
-                    portion.len(),
+                    helpers::cyan(portion.len()),
                     err
                 );
                 continue;
