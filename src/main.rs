@@ -44,7 +44,7 @@ fn main() {
     let portions = match helpers::read_portions(&config.portions_file) {
         Ok(res) => res,
         Err(err) => {
-            error!("An error occurred while parsing the JSON >>> {}!", err);
+            error!("Failed to parse the JSON >>> {}!", err);
             std::process::exit(1);
         }
     };
@@ -59,10 +59,7 @@ fn main() {
             let config = &config;
             go!(scope, move || testing::run(&config.tester_config, portions));
 
-            info!(
-                "{}th coroutine has been spawned successfully.",
-                helpers::cyan(i + 1)
-            );
+            info!("{}th coroutine has been spawned.", helpers::cyan(i + 1));
         }
     });
 }

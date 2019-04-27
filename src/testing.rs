@@ -44,7 +44,7 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
             match send_portion(&mut socket, portion, config.failed_count) {
                 SendPortionResult::Success => {
                     info!(
-                        "{} bytes have been sent successfully. Waiting {}...",
+                        "{} bytes have been sent. Waiting {}...",
                         helpers::cyan(portion.len()),
                         fmt_periodicity
                     );
@@ -64,8 +64,8 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
         }
 
         info!(
-            "All the data portions have been sent successfully. Reconnecting the socket and \
-             retrying it again..."
+            "All the data portions have been sent. Reconnecting the socket and retrying it \
+             again..."
         );
     }
 }
@@ -103,11 +103,9 @@ fn send_portion(
 
 fn connect_socket(config: &SocketConfig) -> MaySocket {
     loop {
-        trace!("Trying to connect a new socket...");
-
         match try_connect_socket(config) {
             Ok(socket) => {
-                trace!("A new socket has been connected successfully.");
+                trace!("A new socket has been connected.");
                 return socket;
             }
             Err(err) => {
