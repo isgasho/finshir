@@ -1,0 +1,8 @@
+language: rust
+
+script:
+  # Turn on the 'nightly' channel to use unstable features
+  - rustup override set nightly
+  -
+  - cargo build --verbose --all
+  - cargo test --verbose --all
