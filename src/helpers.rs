@@ -20,19 +20,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+use std::error::Error;
 use std::fmt::{self, Display, Formatter};
 use std::fs::File;
 use std::io;
-use std::path::PathBuf;
+use std::path::Path;
 
-use serde_json::{self, Error};
+use serde_json;
 
 pub type ReadPortionsResult = Result<Vec<Vec<u8>>, ReadPortionsError>;
 
+// Extracts data portions from a specified file
+pub fn read_portions<P: AsRef<Path>>(path: P) -> ReadPortionsResult {
+    let file = File::open(path).map_err(|err| ReadPortionsError::ReadFailed(err))?;
+
+    Ok(serde_json::from_reader::<_, Vec<String>>(file)
+        .map_err(|err| ReadPortionsError::JsonParseFailed(err))?
+        .into_iter()
+        .map(|s| s.into_bytes())
+        .collect())
+}
+
 #[derive(Debug)]
 pub enum ReadPortionsError {
+    // Used when the function cannot read file content.
     ReadFailed(io::Error),
-    JsonParseFailed(Error),
+
+    // Used when the function cannot parse JSON structure.
+    JsonParseFailed(serde_json::Error),
 }
 
 impl Display for ReadPortionsError {
@@ -44,10 +59,20 @@ impl Display for ReadPortionsError {
     }
 }
 
-pub fn read_portions(filename: &PathBuf) -> ReadPortionsResult {
-    let file = File::open(filename).map_err(|err| ReadPortionsError::ReadFailed(err))?;
-    let array: Vec<String> =
-        serde_json::from_reader(file).map_err(|err| ReadPortionsError::JsonParseFailed(err))?;
+impl Error for ReadPortionsError {}
 
-    Ok(array.into_iter().map(|s| s.into_bytes()).collect())
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // Test that `read_portions()` reads all the portions correctly
+    #[test]
+    fn reads_all_portions() {
+        let res = read_portions("files/test.json").expect("Failed to parse JSON");
+
+        assert_eq!(res[0].as_slice(), b"abc def g");
+        assert_eq!(res[1].as_slice(), b"ghi kkl j");
+        assert_eq!(res[2].as_slice(), b"mno pqr e");
+        assert_eq!(res[3].as_slice(), b"stu vwx f");
+    }
 }
