@@ -45,14 +45,14 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
             match send_portion(&mut socket, portion, config.failed_count) {
                 SendPortionResult::Success => {
                     info!(
-                        "{} bytes have been transmitted successfully. Waiting {}...",
+                        "{} bytes have been sent successfully. Waiting {}...",
                         portion.len(),
                         fmt_periodicity
                     );
                 }
                 SendPortionResult::Failed(err) => {
                     info!(
-                        "Transmitting {} bytes failed {} times >>> {}! Reconnecting the socket...",
+                        "Sending {} bytes failed {} times >>> {}! Reconnecting the socket...",
                         portion.len(),
                         config.failed_count,
                         err,
@@ -80,7 +80,14 @@ fn send_portion(
     for _ in 0..(failed_count.get() - 1) {
         match socket.write_all(portion) {
             Ok(_) => return SendPortionResult::Success,
-            Err(_) => continue,
+            Err(err) => {
+                error!(
+                    "Failed to send {} bytes >>> {}! Retrying the operation...",
+                    portion.len(),
+                    err
+                );
+                continue;
+            }
         }
     }
 
@@ -92,6 +99,8 @@ fn send_portion(
 
 fn connect_socket(config: &SocketConfig) -> MaySocket {
     loop {
+        trace!("Trying to connect a new socket...");
+
         match try_connect_socket(config) {
             Ok(socket) => {
                 trace!("A new socket has been connected successfully.");
@@ -99,7 +108,7 @@ fn connect_socket(config: &SocketConfig) -> MaySocket {
             }
             Err(err) => {
                 error!(
-                    "Socket connecting failed >>> {}! Retrying the operation...",
+                    "Failed to connect a socket >>> {}! Retrying the operation...",
                     err
                 );
                 continue;
@@ -109,21 +118,12 @@ fn connect_socket(config: &SocketConfig) -> MaySocket {
 }
 
 fn try_connect_socket(config: &SocketConfig) -> io::Result<MaySocket> {
-    let socket = match config.tor_proxy {
-        Some(addr) => connect_through_tor(addr, config.receiver)?,
-        None => connect_timeout(&config.receiver, config.connect_timeout)?,
+    let socket = if let Some(proxy) = config.tor_proxy {
+        Socks5Stream::connect(addr, config.receiver)?.into_inner()
+    } else {
+        StdSocket::connect_timeout(&config.receiver, config.connect_timeout)?
     };
 
     socket.set_write_timeout(Some(config.write_timeout))?;
     unsafe { Ok(MaySocket::from_raw_fd(socket.into_raw_fd())) }
-}
-
-// Returns a socket connected to a specified `receiver` with `timeout`.
-fn connect_timeout(receiver: &SocketAddr, timeout: Duration) -> io::Result<StdSocket> {
-    std::net::TcpStream::connect_timeout(receiver, timeout)
-}
-
-// Returns a socket connected to a specified `receiver` through Tor.
-fn connect_through_tor(proxy: SocketAddr, receiver: SocketAddr) -> io::Result<StdSocket> {
-    Ok(Socks5Stream::connect(proxy, receiver)?.into_inner())
 }

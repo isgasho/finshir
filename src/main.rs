@@ -52,7 +52,7 @@ fn main() {
     let portions: Vec<&[u8]> = parsed.iter().map(|vec| vec.as_slice()).collect();
 
     coroutine::scope(|scope| {
-        go!(scope, move || tester::run(
+        go!(scope, move || testing::run(
             &config.tester_config,
             portions.as_slice()
         ));
