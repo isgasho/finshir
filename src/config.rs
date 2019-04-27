@@ -61,6 +61,17 @@ pub struct ArgsConfig {
     )]
     pub portions_file: PathBuf,
 
+    /// A time interval between writing data portions. This option can be used
+    /// to decrease test intensity
+    #[structopt(
+        long = "write-periodicity",
+        takes_value = true,
+        value_name = "TIME-SPAN",
+        default_value = "10secs",
+        parse(try_from_str = "parse_duration")
+    )]
+    pub write_periodicity: Duration,
+
     #[structopt(flatten)]
     pub socket_config: SocketConfig,
 
@@ -104,17 +115,6 @@ pub struct SocketConfig {
         parse(try_from_str = "parse_duration")
     )]
     pub write_timeout: Duration,
-
-    /// A time interval between writing data portions. This option can be used
-    /// to decrease test intensity
-    #[structopt(
-        long = "write-periodicity",
-        takes_value = true,
-        value_name = "TIME-SPAN",
-        default_value = "10secs",
-        parse(try_from_str = "parse_duration")
-    )]
-    pub write_periodicity: Duration,
 
     /// Connect all future sockets to a local Tor proxy, specified as an IP
     /// address and a port number, separated by a colon.
