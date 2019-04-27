@@ -69,6 +69,7 @@ pub fn setup_logging(logging_config: &LoggingConfig) {
                 .chain(io::stdout()),
         )
         .level(associated_level(logging_config.verbosity))
+        .level_for("may", LevelFilter::Off)
         .apply()
         .expect("Applying the fern::Dispatch has failed");
 }

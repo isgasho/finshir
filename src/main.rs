@@ -24,6 +24,7 @@
 extern crate log;
 
 use colored::Colorize;
+use may::{self, coroutine, go};
 use structopt::StructOpt;
 
 use crate::config::ArgsConfig;
@@ -31,7 +32,7 @@ use crate::config::ArgsConfig;
 mod config;
 mod helpers;
 mod logging;
-mod tester;
+mod testing;
 
 fn main() {
     let config = ArgsConfig::from_args();
@@ -39,6 +40,23 @@ fn main() {
 
     logging::setup_logging(&config.logging_config);
     trace!("{:?}", config);
+
+    let parsed = match helpers::read_portions(&config.portions_file) {
+        Ok(res) => res,
+        Err(err) => {
+            error!("An error occurred while parsing the JSON >>> {}!", err);
+            std::process::exit(1);
+        }
+    };
+
+    let portions: Vec<&[u8]> = parsed.iter().map(|vec| vec.as_slice()).collect();
+
+    coroutine::scope(|scope| {
+        go!(scope, move || tester::run(
+            &config.tester_config,
+            portions.as_slice()
+        ));
+    });
 }
 
 fn title() {
