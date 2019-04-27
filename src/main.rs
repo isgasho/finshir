@@ -24,6 +24,7 @@
 extern crate log;
 
 use colored::Colorize;
+use humantime::format_duration;
 use may::{self, coroutine, go};
 use structopt::StructOpt;
 
@@ -40,6 +41,18 @@ fn main() {
 
     logging::setup_logging(&config.logging_config);
     trace!("{:?}", config);
+
+    info!(
+        "Waiting {} and then spawning {} coroutines connected through the {}.",
+        helpers::cyan(format_duration(config.wait)),
+        helpers::cyan(config.connections),
+        if config.tester_config.socket_config.tor_proxy.is_some() {
+            "Tor network"
+        } else {
+            "regular Web"
+        }
+    );
+    std::thread::sleep(config.wait);
 
     let portions = match helpers::read_portions(&config.portions_file) {
         Ok(res) => res,
