@@ -52,7 +52,7 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
                     );
                 }
                 SendPortionResult::Failed(err) => {
-                    info!(
+                    error!(
                         "Sending {} bytes failed {} times >>> {}! Reconnecting the socket...",
                         helpers::cyan(portion.len()),
                         helpers::cyan(config.failed_count),
