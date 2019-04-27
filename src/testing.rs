@@ -64,6 +64,8 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
 
             coroutine::sleep(config.write_periodicity);
         }
+
+        info!("All the data portions have been sent successfully. Retrying it again...");
     }
 }
 
