@@ -215,48 +215,70 @@ mod tests {
     // Check that ordinary formats are passed correctly
     #[test]
     fn parses_valid_time_format() {
-        assert_eq!(&parse_time_format("%x %X %e").unwrap(), "%x %X %e");
-        assert_eq!(&parse_time_format("%H %a %G").unwrap(), "%H %a %G");
+        let check = |format| {
+            assert_eq!(
+                parse_time_format(format),
+                Ok(output),
+                "Parses valid time incorrectly"
+            )
+        };
 
-        assert_eq!(&parse_time_format("something").unwrap(), "something");
-        assert_eq!(&parse_time_format("flower %d").unwrap(), "flower %d");
+        check("%x %X %e");
+        check("%H %a %G");
+        check("something");
+        check("flower %d");
     }
 
     // Invalid formats must produce the invalid format error
     #[test]
     fn parses_invalid_time_format() {
-        assert!(parse_time_format("%_=-%vbg=").is_err());
-        assert!(parse_time_format("yufb%44htv").is_err());
-        assert!(parse_time_format("sf%jhei9%990").is_err());
+        let check = |format| {
+            assert!(
+                parse_time_format(format).is_ok(),
+                "Parses invalid time correctly"
+            )
+        };
+
+        check("%_=-%vbg=");
+        check("yufb%44htv");
+        check("sf%jhei9%990");
     }
 
     // Check that ordinary values are parsed correctly
     #[test]
     fn parses_valid_non_zero_usize() {
-        assert_eq!(parse_non_zero_usize("1"), Ok(NonZeroUsize::new(1).unwrap()));
-        assert_eq!(parse_non_zero_usize("3"), Ok(NonZeroUsize::new(3).unwrap()));
-        assert_eq!(
-            parse_non_zero_usize("26655"),
-            Ok(NonZeroUsize::new(26655).unwrap())
-        );
-        assert_eq!(
-            parse_non_zero_usize("+75"),
-            Ok(NonZeroUsize::new(75).unwrap())
-        );
+        let check = |num| {
+            assert_eq!(
+                parse_non_zero_usize(num),
+                Ok(NonZeroUsize::new(num).unwrap()),
+                "Parses valid NonZeroUsize incorrectly"
+            )
+        };
+
+        check("1");
+        check("3");
+        check("26655");
+        check("+75");
     }
 
     // Invalid numbers must produce the invalid format error
     #[test]
     fn parses_invalid_non_zero_usize() {
-        assert!(parse_non_zero_usize("   ").is_err());
+        let check = |num| {
+            assert_eq!(
+                parse_non_zero_usize(num).is_err(),
+                "Parses invalid NonZeroUsize correctly"
+            )
+        };
 
-        assert!(parse_non_zero_usize("abc5653odr!"));
-        assert!(parse_non_zero_usize("6485&02hde"));
+        check("   ");
 
-        assert!(parse_non_zero_usize("-565642"));
-        assert!(parse_non_zero_usize(&"2178".repeat(50)).is_err());
+        check("abc5653odr!");
+        check("6485&02hde");
 
-        // Check that the zero value is not allowed
+        check("-565642");
+        check(&"2178".repeat(50));
+
         assert_eq!(parse_non_zero_usize("0"), Err(NonZeroUsizeError::ZeroValue));
     }
 }
