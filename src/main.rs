@@ -23,15 +23,15 @@
 #[macro_use]
 extern crate log;
 
+use colored::Colorize;
+use structopt::StructOpt;
+
 use crate::config::ArgsConfig;
 
 mod config;
 mod helpers;
 mod logging;
 mod tester;
-
-use colored::Colorize;
-use structopt::StructOpt;
 
 fn main() {
     let config = ArgsConfig::from_args();

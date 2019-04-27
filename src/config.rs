@@ -20,14 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+use std::error::Error;
+use std::fmt::{self, Display, Formatter};
 use std::net::SocketAddr;
 use std::num::{NonZeroUsize, ParseIntError};
 use std::path::PathBuf;
 use std::time::Duration;
 
 use humantime::parse_duration;
-use std::error::Error;
-use std::fmt::{self, Display, Formatter};
 use structopt::StructOpt;
 
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]

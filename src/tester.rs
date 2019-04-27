@@ -20,17 +20,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use crate::config::{SocketConfig, TesterConfig};
-
-use humantime::format_duration;
-use may::coroutine;
-use socks::Socks5Stream;
-
 use std::io::{self, Write};
 use std::net::SocketAddr;
 use std::num::NonZeroUsize;
 use std::os::unix::io::{FromRawFd, IntoRawFd};
 use std::time::Duration;
+
+use humantime::format_duration;
+use may::coroutine;
+use socks::Socks5Stream;
+
+use crate::config::{SocketConfig, TesterConfig};
 
 type StdSocket = std::net::TcpStream;
 type MaySocket = may::net::TcpStream;
