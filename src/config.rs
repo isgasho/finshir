@@ -20,11 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+use std::net::SocketAddr;
+use std::num::{NonZeroUsize, ParseIntError};
+use std::path::PathBuf;
 use std::time::Duration;
 
 use humantime::parse_duration;
-use std::net::SocketAddr;
-use std::path::PathBuf;
+use std::error::Error;
+use std::fmt::{self, Display, Formatter};
 use structopt::StructOpt;
 
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
@@ -35,8 +38,8 @@ use structopt::StructOpt;
     set_term_width = 80
 )]
 pub struct ArgsConfig {
-    /// A waiting time span before a test execution used to prevent a
-    /// launch of an erroneous (unwanted) test
+    /// A waiting time span before a test execution used to prevent a launch of
+    /// an erroneous (unwanted) test
     #[structopt(
         short = "w",
         long = "wait",
@@ -61,19 +64,8 @@ pub struct ArgsConfig {
     )]
     pub portions_file: PathBuf,
 
-    /// A time interval between writing data portions. This option can be used
-    /// to decrease test intensity
-    #[structopt(
-        long = "write-periodicity",
-        takes_value = true,
-        value_name = "TIME-SPAN",
-        default_value = "10secs",
-        parse(try_from_str = "parse_duration")
-    )]
-    pub write_periodicity: Duration,
-
     #[structopt(flatten)]
-    pub socket_config: SocketConfig,
+    pub tester_config: TesterConfig,
 
     #[structopt(flatten)]
     pub logging_config: LoggingConfig,
@@ -126,6 +118,34 @@ pub struct SocketConfig {
 }
 
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
+pub struct TesterConfig {
+    /// A time interval between writing data portions. This option can be used
+    /// to decrease test intensity
+    #[structopt(
+        long = "write-periodicity",
+        takes_value = true,
+        value_name = "TIME-SPAN",
+        default_value = "10secs",
+        parse(try_from_str = "parse_duration")
+    )]
+    pub write_periodicity: Duration,
+
+    /// A number of failed data transmissions used to reconnect a socket to a
+    /// remote web server
+    #[structopt(
+        long = "failed-count",
+        takes_value = true,
+        value_name = "POSITIVE-INTEGER",
+        default_value = "5",
+        parse(try_from_str = "parse_non_zero_usize")
+    )]
+    pub failed_count: NonZeroUsize,
+
+    #[structopt(flatten)]
+    pub socket_config: SocketConfig,
+}
+
+#[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
 pub struct LoggingConfig {
     /// Enable one of the possible verbosity levels. The zero level doesn't
     /// print anything, and the last level prints everything
@@ -165,6 +185,29 @@ pub fn parse_time_format(format: &str) -> Result<String, time::ParseError> {
     Ok(String::from(format))
 }
 
+pub fn parse_non_zero_usize(number: &str) -> Result<NonZeroUsize, NonZeroUsizeError> {
+    let number: usize = number.parse().map_err(NonZeroUsizeError::InvalidFormat)?;
+
+    NonZeroUsize::new(number).ok_or(NonZeroUsizeError::ZeroValue)
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum NonZeroUsizeError {
+    InvalidFormat(ParseIntError),
+    ZeroValue,
+}
+
+impl Display for NonZeroUsizeError {
+    fn fmt(&self, fmt: &mut Formatter) -> fmt::Result {
+        match self {
+            NonZeroUsizeError::InvalidFormat(error) => write!(fmt, "{}", error),
+            NonZeroUsizeError::ZeroValue => write!(fmt, "The value equals to zero"),
+        }
+    }
+}
+
+impl Error for NonZeroUsizeError {}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -185,5 +228,35 @@ mod tests {
         assert!(parse_time_format("%_=-%vbg=").is_err());
         assert!(parse_time_format("yufb%44htv").is_err());
         assert!(parse_time_format("sf%jhei9%990").is_err());
+    }
+
+    // Check that ordinary values are parsed correctly
+    #[test]
+    fn parses_valid_non_zero_usize() {
+        assert_eq!(parse_non_zero_usize("1"), Ok(NonZeroUsize::new(1).unwrap()));
+        assert_eq!(parse_non_zero_usize("3"), Ok(NonZeroUsize::new(3).unwrap()));
+        assert_eq!(
+            parse_non_zero_usize("26655"),
+            Ok(NonZeroUsize::new(26655).unwrap())
+        );
+        assert_eq!(
+            parse_non_zero_usize("+75"),
+            Ok(NonZeroUsize::new(75).unwrap())
+        );
+    }
+
+    // Invalid numbers must produce the invalid format error
+    #[test]
+    fn parses_invalid_non_zero_usize() {
+        assert!(parse_non_zero_usize("   ").is_err());
+
+        assert!(parse_non_zero_usize("abc5653odr!"));
+        assert!(parse_non_zero_usize("6485&02hde"));
+
+        assert!(parse_non_zero_usize("-565642"));
+        assert!(parse_non_zero_usize(&"2178".repeat(50)).is_err());
+
+        // Check that the zero value is not allowed
+        assert_eq!(parse_non_zero_usize("0"), Err(NonZeroUsizeError::ZeroValue));
     }
 }
