@@ -65,11 +65,11 @@ fn main() {
     let portions: Vec<&[u8]> = portions.iter().map(|vec| vec.as_slice()).collect();
 
     coroutine::scope(|scope| {
+        let portions = &portions;
+        let config = &config;
         let iters = config.connections.get();
 
         for _ in 0..iters {
-            let portions = &portions;
-            let config = &config;
             go!(scope, move || testing::run(&config.tester_config, portions));
         }
 
