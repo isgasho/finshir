@@ -27,7 +27,7 @@ use std::net::SocketAddr;
 use std::path::PathBuf;
 use structopt::StructOpt;
 
-#[derive(Debug, Clone, Eq, PartialEq, StructOpt)]
+#[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
 #[structopt(
     author = "Temirkhan Myrzamadi <gymmasssorla@gmail.com>",
     about = "Wanna try the fastest Low & Slow traffic generator in existence?",
@@ -76,9 +76,9 @@ pub struct SocketConfig {
         short = "r",
         long = "receiver",
         takes_value = true,
-        value_name = "ADDRESS"
+        value_name = "SOCKET-ADDRESS"
     )]
-    pub receiver: SocketAddr,
+    pub receiver: String,
 
     /// If a timeout is reached and a socket wasn't connected, the program will
     /// retry the operation later
