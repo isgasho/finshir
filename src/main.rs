@@ -62,7 +62,7 @@ fn main() {
         }
     };
 
-    let portions: Vec<&[u8]> = portions.iter().map(|vec| vec.as_slice()).collect();
+    let portions: Vec<&[u8]> = portions.iter().map(Vec::as_slice).collect();
 
     coroutine::scope(|scope| {
         let portions = &portions;

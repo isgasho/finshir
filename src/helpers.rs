@@ -33,12 +33,12 @@ pub type ReadPortionsResult = Result<Vec<Vec<u8>>, ReadPortionsError>;
 
 // Extracts data portions from a specified file
 pub fn read_portions<P: AsRef<Path>>(path: P) -> ReadPortionsResult {
-    let file = File::open(path).map_err(|err| ReadPortionsError::ReadFailed(err))?;
+    let file = File::open(path).map_err(ReadPortionsError::ReadFailed)?;
 
     Ok(serde_json::from_reader::<_, Vec<String>>(file)
-        .map_err(|err| ReadPortionsError::JsonParseFailed(err))?
+        .map_err(ReadPortionsError::JsonParseFailed)?
         .into_iter()
-        .map(|s| s.into_bytes())
+        .map(String::into_bytes)
         .collect())
 }
 
