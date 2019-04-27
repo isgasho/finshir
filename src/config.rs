@@ -70,18 +70,21 @@ pub struct ArgsConfig {
 
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
 pub struct SocketConfig {
-    /// A receiver of generator traffic, specified as an IP address or a domain
-    /// name and a port, separated by a colon
+    /// A receiver of generator traffic, specified as an IP address and a port
+    /// number, separated by a colon
     #[structopt(
         short = "r",
         long = "receiver",
         takes_value = true,
         value_name = "SOCKET-ADDRESS"
     )]
-    pub receiver: String,
+    pub receiver: SocketAddr,
 
     /// If a timeout is reached and a socket wasn't connected, the program will
-    /// retry the operation later
+    /// retry the operation later.
+    ///
+    /// Note that this option currently doesn't work for sockets which are
+    /// trying to connect through Tor.
     #[structopt(
         long = "connect-timeout",
         takes_value = true,
@@ -113,10 +116,10 @@ pub struct SocketConfig {
     )]
     pub write_periodicity: Duration,
 
-    /// Connect all future sockets to a local tor proxy, specified as an IP
-    /// address or a domain name and a port, separated by a colon.
+    /// Connect all future sockets to a local Tor proxy, specified as an IP
+    /// address and a port number, separated by a colon.
     ///
-    /// Typically, a tor proxy runs on 127.0.0.1:9050. You can edit its
+    /// Typically, a Tor proxy runs on 127.0.0.1:9050. You can edit its
     /// configuration located in `/etc/tor/torrc`.
     #[structopt(long = "tor-proxy", takes_value = true, value_name = "SOCKET-ADDRESS")]
     pub tor_proxy: Option<SocketAddr>,

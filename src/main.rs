@@ -1,6 +1,7 @@
 use crate::config::ArgsConfig;
 
 mod config;
+mod tester;
 
 use structopt::StructOpt;
 
