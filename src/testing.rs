@@ -43,7 +43,7 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
         for &portion in portions {
             match send_portion(&mut socket, portion, config.failed_count) {
                 SendPortionResult::Success => {
-                    info!(
+                    trace!(
                         "{} bytes have been sent. Waiting {}...",
                         helpers::cyan(portion.len()),
                         fmt_periodicity

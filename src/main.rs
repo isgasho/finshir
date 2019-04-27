@@ -54,13 +54,13 @@ fn main() {
     coroutine::scope(|scope| {
         let iters = config.connections.get();
 
-        for i in 0..iters {
+        for _ in 0..iters {
             let portions = &portions;
             let config = &config;
             go!(scope, move || testing::run(&config.tester_config, portions));
-
-            info!("{}th coroutine has been spawned.", helpers::cyan(i + 1));
         }
+
+        info!("All the coroutines have been spawned.");
     });
 }
 
