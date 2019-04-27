@@ -119,7 +119,7 @@ fn connect_socket(config: &SocketConfig) -> MaySocket {
 
 fn try_connect_socket(config: &SocketConfig) -> io::Result<MaySocket> {
     let socket = if let Some(proxy) = config.tor_proxy {
-        Socks5Stream::connect(addr, config.receiver)?.into_inner()
+        Socks5Stream::connect(proxy, config.receiver)?.into_inner()
     } else {
         StdSocket::connect_timeout(&config.receiver, config.connect_timeout)?
     };
