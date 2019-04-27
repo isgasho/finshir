@@ -64,6 +64,21 @@ pub struct ArgsConfig {
     )]
     pub portions_file: PathBuf,
 
+    /// A number of connections the program will handle simultaneously. This
+    /// option also equals to a number of coroutines.
+    ///
+    /// Before using this option consider modifying a default limit of opened
+    /// file descriptors using `sudo ulimit -n <COUNT>`.
+    #[structopt(
+        short = "c",
+        long = "connections",
+        takes_value = true,
+        value_name = "POSITIVE-INTEGER",
+        default_value = "100",
+        parse(try_from_str = "parse_non_zero_usize")
+    )]
+    pub connections: NonZeroUsize,
+
     #[structopt(flatten)]
     pub tester_config: TesterConfig,
 
