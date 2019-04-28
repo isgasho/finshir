@@ -77,23 +77,23 @@ fn main() {
 
 fn title() {
     println!(
-        "                 {}",
+        "                {}",
         r"  __ _           _     _      ".cyan()
     );
     println!(
-        "                 {}",
+        "                {}",
         r" / _(_)_ __  ___| |__ (_)_ __ ".cyan()
     );
     println!(
-        "                 {}",
+        "                {}",
         r"| |_| | '_ \/ __| '_ \| | '__|".cyan()
     );
     println!(
-        "                 {}",
+        "                {}",
         r"|  _| | | | \__ \ | | | | |   ".cyan()
     );
     println!(
-        "                 {}",
+        "                {}",
         r"|_| |_|_| |_|___/_| |_|_|_|   ".cyan()
     );
     println!(
@@ -104,7 +104,7 @@ fn title() {
     );
     println!(
         "{}\n",
-        "Wanna try the fastest Low & Slow traffic generator in existence?"
+        "A coroutines-driven Low & Slow traffic sender, written in Rust"
             .green()
             .underline()
     );

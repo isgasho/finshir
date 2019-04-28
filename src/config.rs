@@ -33,7 +33,7 @@ use structopt::StructOpt;
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
 #[structopt(
     author = "Temirkhan Myrzamadi <gymmasssorla@gmail.com>",
-    about = "Wanna try the fastest Low & Slow traffic generator in existence?",
+    about = "A highly optimised Low & Slow traffic sender, written in Rust",
     after_help = "For more information see <https://github.com/Gymmasssorla/finshir>.",
     set_term_width = 80
 )]
