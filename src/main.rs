@@ -42,7 +42,7 @@ fn main() {
     logging::setup_logging(&config.logging_config);
     trace!("{:?}", config);
 
-    info!(
+    warn!(
         "Waiting {} and then spawning {} coroutines connected through the {}.",
         helpers::cyan(format_duration(config.wait)),
         helpers::cyan(config.connections),
