@@ -123,6 +123,12 @@ fn try_connect_socket(config: &SocketConfig) -> io::Result<MaySocket> {
         StdSocket::connect_timeout(&config.receiver, config.connect_timeout)?
     };
 
+    // We send packets quite rarely (the default is 30secs), so the Nagle algorithm
+    // doesn't help us
+    socket
+        .set_nodelay(true)
+        .expect("Cannot disable TCP_NODELAY");
     socket.set_write_timeout(Some(config.write_timeout))?;
+
     unsafe { Ok(MaySocket::from_raw_fd(socket.into_raw_fd())) }
 }
