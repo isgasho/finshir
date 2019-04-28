@@ -44,6 +44,12 @@ fn main() {
     logging::setup_logging(&config.logging_config);
     trace!("{:?}", config);
 
+    let portions = helpers::read_portions(&config.portions_file).unwrap_or_else(|err| {
+        error!("Failed to parse the JSON >>> {}!", err);
+        std::process::exit(1);
+    });
+    let portions: Vec<&[u8]> = portions.iter().map(Vec::as_slice).collect();
+
     warn!(
         "Waiting {} and then spawning {} coroutines connected through the {}.",
         helpers::cyan(format_duration(config.wait)),
@@ -55,12 +61,6 @@ fn main() {
         }
     );
     std::thread::sleep(config.wait);
-
-    let portions = helpers::read_portions(&config.portions_file).unwrap_or_else(|err| {
-        error!("Failed to parse the JSON >>> {}!", err);
-        std::process::exit(1);
-    });
-    let portions: Vec<&[u8]> = portions.iter().map(Vec::as_slice).collect();
 
     coroutine::scope(|scope| {
         let portions = &portions;
