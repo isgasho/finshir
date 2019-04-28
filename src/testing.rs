@@ -35,7 +35,7 @@ type StdSocket = std::net::TcpStream;
 type MaySocket = may::net::TcpStream;
 
 pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
-    let fmt_periodicity = helpers::cyan(format_duration(config.write_periodicity));
+    let fmt_per = helpers::cyan(format_duration(config.write_periodicity));
 
     loop {
         let mut socket: MaySocket = connect_socket(&config.socket_config);
@@ -43,10 +43,10 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
         for &portion in portions {
             match send_portion(&mut socket, portion, config.failed_count) {
                 SendPortionResult::Success => {
-                    trace!(
+                    info!(
                         "{} bytes have been sent. Waiting {}...",
                         helpers::cyan(portion.len()),
-                        fmt_periodicity
+                        fmt_per
                     );
                 }
                 SendPortionResult::Failed(err) => {
@@ -63,10 +63,7 @@ pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
             coroutine::sleep(config.write_periodicity);
         }
 
-        info!(
-            "All the data portions have been sent. Reconnecting the socket and retrying it \
-             again..."
-        );
+        info!("All the data portions have been sent. Reconnecting the socket...");
     }
 }
 
@@ -105,7 +102,7 @@ fn connect_socket(config: &SocketConfig) -> MaySocket {
     loop {
         match try_connect_socket(config) {
             Ok(socket) => {
-                trace!("A new socket has been connected.");
+                info!("A new socket has been connected.");
                 return socket;
             }
             Err(err) => {
