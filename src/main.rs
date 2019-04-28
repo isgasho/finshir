@@ -60,7 +60,6 @@ fn main() {
         error!("Failed to parse the JSON >>> {}!", err);
         std::process::exit(1);
     });
-
     let portions: Vec<&[u8]> = portions.iter().map(Vec::as_slice).collect();
 
     coroutine::scope(|scope| {
