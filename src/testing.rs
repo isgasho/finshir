@@ -78,24 +78,30 @@ fn send_portion(
     portion: &[u8],
     failed_count: NonZeroUsize,
 ) -> SendPortionResult {
-    for _ in 0..(failed_count.get() - 1) {
-        match socket.write_all(portion) {
-            Ok(_) => return SendPortionResult::Success,
-            Err(err) => {
-                error!(
-                    "Failed to send {} bytes >>> {}! Retrying the operation...",
-                    helpers::cyan(portion.len()),
-                    err
-                );
-                continue;
+    let res = {
+        for _ in 0..(failed_count.get() - 1) {
+            match socket.write_all(portion) {
+                Ok(_) => return SendPortionResult::Success,
+                Err(err) => {
+                    error!(
+                        "Failed to send {} bytes >>> {}! Retrying the operation...",
+                        helpers::cyan(portion.len()),
+                        err
+                    );
+                    continue;
+                }
             }
         }
-    }
 
-    match socket.write_all(portion) {
-        Ok(_) => SendPortionResult::Success,
-        Err(err) => SendPortionResult::Failed(err),
-    }
+        match socket.write_all(portion) {
+            Ok(_) => SendPortionResult::Success,
+            Err(err) => SendPortionResult::Failed(err),
+        }
+    };
+
+    socket
+        .flush()
+        .map_or_else(SendPortionResult::Failed, || res)
 }
 
 fn connect_socket(config: &SocketConfig) -> MaySocket {
