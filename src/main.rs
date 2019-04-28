@@ -56,13 +56,10 @@ fn main() {
     );
     std::thread::sleep(config.wait);
 
-    let portions = match helpers::read_portions(&config.portions_file) {
-        Ok(res) => res,
-        Err(err) => {
-            error!("Failed to parse the JSON >>> {}!", err);
-            std::process::exit(1);
-        }
-    };
+    let portions = helpers::read_portions(&config.portions_file).unwrap_or_else(|err| {
+        error!("Failed to parse the JSON >>> {}!", err);
+        std::process::exit(1);
+    });
 
     let portions: Vec<&[u8]> = portions.iter().map(Vec::as_slice).collect();
 
