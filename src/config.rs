@@ -74,7 +74,7 @@ pub struct ArgsConfig {
         long = "connections",
         takes_value = true,
         value_name = "POSITIVE-INTEGER",
-        default_value = "100",
+        default_value = "1000",
         parse(try_from_str = "parse_non_zero_usize")
     )]
     pub connections: NonZeroUsize,
