@@ -101,7 +101,7 @@ fn send_portion(
 
     socket
         .flush()
-        .map_or_else(SendPortionResult::Failed, || res)
+        .map_or_else(SendPortionResult::Failed, |_| res)
 }
 
 fn connect_socket(config: &SocketConfig) -> MaySocket {
