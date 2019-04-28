@@ -140,7 +140,7 @@ pub struct TesterConfig {
         long = "write-periodicity",
         takes_value = true,
         value_name = "TIME-SPAN",
-        default_value = "10secs",
+        default_value = "30secs",
         parse(try_from_str = "parse_duration")
     )]
     pub write_periodicity: Duration,
