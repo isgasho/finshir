@@ -17,7 +17,7 @@
     <img src="https://img.shields.io/badge/semver-follows-green.svg">
   </a>
   
-  <img src="ICON.png"><br>
+  <img src="ICON.png" width="500px"><br>
   
   You are seeing a high-performant, coroutines-driven, and fully customisable implementation of [Low & Slow](https://www.cloudflare.com/learning/ddos/ddos-low-and-slow-attack/) load generator designed for real-world pentesting. Its complete undetectability is achieved by connecting through [Tor](https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29).
   
