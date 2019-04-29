@@ -50,7 +50,7 @@ fn main() {
         "Waiting {} and then spawning {} coroutines connected through the {}.",
         helpers::cyan(format_duration(config.wait)),
         helpers::cyan(config.connections),
-        if config.tester_config.socket_config.tor_proxy.is_some() {
+        if config.tester_config.socket_config.use_tor {
             "Tor network"
         } else {
             "regular Web"

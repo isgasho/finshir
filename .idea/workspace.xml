@@ -4,7 +4,16 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67208693-eb9a-4213-b448-bf3b8dccb2df" name="Default Changelist" comment="" />
+    <list default="true" id="67208693-eb9a-4213-b448-bf3b8dccb2df" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logging.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/logging.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testing.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/testing.rs" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +27,17 @@
     <favorites_list name="finshir" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/config.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="129" column="39" selection-start-line="129" selection-start-column="39" selection-end-line="129" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -43,12 +62,12 @@
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/src/tester.rs" />
         <option value="$PROJECT_DIR$/files/test.json" />
-        <option value="$PROJECT_DIR$/Cargo.toml" />
         <option value="$PROJECT_DIR$/finshir.json" />
-        <option value="$PROJECT_DIR$/src/testing.rs" />
-        <option value="$PROJECT_DIR$/src/main.rs" />
         <option value="$PROJECT_DIR$/src/logging.rs" />
         <option value="$PROJECT_DIR$/src/helpers.rs" />
+        <option value="$PROJECT_DIR$/src/main.rs" />
+        <option value="$PROJECT_DIR$/Cargo.toml" />
+        <option value="$PROJECT_DIR$/src/testing.rs" />
         <option value="$PROJECT_DIR$/src/config.rs" />
       </list>
     </option>
@@ -57,10 +76,8 @@
     <option name="directoryName" value="YEsGPnwL" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="263" />
-    <option name="y" value="239" />
-    <option name="width" value="949" />
-    <option name="height" value="1037" />
+    <option name="width" value="959" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -277,8 +294,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1040" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1638207" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.339381" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -290,7 +308,7 @@
       <window_info id="Job Explorer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969433" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.20087336" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19104804" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -298,7 +316,7 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Console" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.9519651" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5371179" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32969433" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -361,13 +379,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cargo.toml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/libstd/io/mod.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -393,20 +404,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/testing.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="70" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/logging.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -421,10 +418,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Cargo.toml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testing.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="35" column="10" lean-forward="true" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/config.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="70" selection-start-line="16" selection-start-column="70" selection-end-line="16" selection-end-column="70" />
+        <state relative-caret-position="260">
+          <caret line="129" column="39" selection-start-line="129" selection-start-column="39" selection-end-line="129" selection-end-column="39" />
         </state>
       </provider>
     </entry>

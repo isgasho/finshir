@@ -119,13 +119,10 @@ pub struct SocketConfig {
     )]
     pub write_timeout: Duration,
 
-    /// Connect all future sockets to a local Tor proxy, specified as an IP
-    /// address and a port number, separated by a colon.
-    ///
-    /// Typically, a Tor proxy runs on 127.0.0.1:9050. You can edit its
-    /// configuration located in `/etc/tor/torrc`.
-    #[structopt(long = "tor-proxy", takes_value = true, value_name = "SOCKET-ADDRESS")]
-    pub tor_proxy: Option<SocketAddr>,
+    /// Torify all sockets by connecting to a SOCKS5 proxy running on
+    /// 127.0.0.1:9050
+    #[structopt(long = "use-tor")]
+    pub use_tor: bool,
 }
 
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]

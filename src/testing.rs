@@ -22,7 +22,7 @@ use std::os::unix::io::{FromRawFd, IntoRawFd};
 
 use humantime::format_duration;
 use may::coroutine;
-use socks::Socks5Stream;
+use tor_stream::TorStream;
 
 use crate::config::{SocketConfig, TesterConfig};
 use crate::helpers;
@@ -119,8 +119,8 @@ fn connect_socket(config: &SocketConfig) -> MaySocket {
 }
 
 fn try_connect_socket(config: &SocketConfig) -> io::Result<MaySocket> {
-    let socket = if let Some(proxy) = config.tor_proxy {
-        Socks5Stream::connect(proxy, config.receiver)?.into_inner()
+    let socket = if config.use_tor {
+        TorStream::connect(config.receiver)?.unwrap()
     } else {
         StdSocket::connect_timeout(&config.receiver, config.connect_timeout)?
     };
