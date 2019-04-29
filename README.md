@@ -19,7 +19,7 @@
   
   <img src="ICON.png" width="520px"><br>
   
-  You are seeing a high-performant, coroutines-driven, and fully customisable implementation of [Low & Slow](https://www.cloudflare.com/learning/ddos/ddos-low-and-slow-attack/) load generator designed for real-world pentesting. Its complete undetectability is achieved by connecting through [Tor](https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29).
+  You are seeing a high-performant, coroutines-driven, and fully customisable implementation of [Low & Slow](https://www.cloudflare.com/learning/ddos/ddos-low-and-slow-attack/) load generator designed for real-world pentesting. Its complete undetectability is achieved by [proxifying](https://en.wikipedia.org/wiki/Proxy_server) connections.
   
   <h4>
     <a href="https://github.com/Gymmasssorla/finshir/pulse">Pulse</a> &middot;
