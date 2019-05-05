@@ -130,7 +130,12 @@ fn try_connect_socket(config: &SocketConfig) -> io::Result<MaySocket> {
     socket
         .set_nodelay(true)
         .expect("Cannot disable TCP_NODELAY");
+
     socket.set_write_timeout(Some(config.write_timeout))?;
+
+    if let Some(val) = config.ip_ttl {
+        socket.set_ttl(val)?;
+    }
 
     unsafe { Ok(MaySocket::from_raw_fd(socket.into_raw_fd())) }
 }

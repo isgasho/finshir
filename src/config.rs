@@ -123,6 +123,11 @@ pub struct SocketConfig {
     /// 127.0.0.1:9050
     #[structopt(long = "use-tor")]
     pub use_tor: bool,
+
+    /// Specifies the IP_TTL value for all future sockets. Usually this value
+    /// equals a number of routers that a packet can go through
+    #[structopt(long = "ip-ttl", takes_value = true, value_name = "UNSIGNED-INTEGER")]
+    pub ip_ttl: Option<u32>,
 }
 
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
