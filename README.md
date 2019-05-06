@@ -130,3 +130,8 @@ OPTIONS:
 
 For more information see <https://github.com/Gymmasssorla/finshir>.
 ```
+
+----------
+
+## Contacts
+[Temirkhan Myrzamadi](https://github.com/Gymmasssorla) <[gymmasssorla@gmail.com](mailto:gymmasssorla@gmail.com)> (the author)
