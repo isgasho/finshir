@@ -138,5 +138,10 @@ You are always welcome for any contribution to this project! But before you star
 
 ----------
 
+## Legal disclaimer
+Finshir was developed as a means of testing stress resistance of web servers, and not for hacking, that is, the author of the project **IS NOT RESPONSIBLE** for any damage caused by your use of his program.
+
+----------
+
 ## Contacts
 [Temirkhan Myrzamadi](https://github.com/Gymmasssorla) <[gymmasssorla@gmail.com](mailto:gymmasssorla@gmail.com)> (the author)
