@@ -31,24 +31,6 @@
 
 ----------
 
-## Contents
-
- - [Installation](https://github.com/Gymmasssorla/finshir#installation)
-   - [Building from crates.io](https://github.com/Gymmasssorla/finshir#building-from-cratesio)
-   - [Building from sources](https://github.com/Gymmasssorla/finshir#building-from-sources)
-   - [Pre-compiled binaries](https://github.com/Gymmasssorla/finshir#pre-compiled-binaries)
- - [Getting started](https://github.com/Gymmasssorla/finshir#getting-started)
- - [Options](https://github.com/Gymmasssorla/finshir#options)
- - [Gallery](https://github.com/Gymmasssorla/finshir#gallery)
-   - [Initialisation](https://github.com/Gymmasssorla/finshir#initialisation)
-   - [Errors](https://github.com/Gymmasssorla/finshir#errors)
-   - [Being verbose](https://github.com/Gymmasssorla/finshir#being-verbose)
- - [Contributing](https://github.com/Gymmasssorla/finshir#contributing)
- - [Legal disclaimer](https://github.com/Gymmasssorla/finshir#legal-disclaimer)
- - [Contacts](https://github.com/Gymmasssorla/finshir#contacts)
-
-----------
-
 ## Installation
 
 ### Building from crates.io
