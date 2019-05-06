@@ -28,3 +28,73 @@
     <a href="https://github.com/Gymmasssorla/finshir/blob/master/CONTRIBUTING.md">Contributing</a>
   </h4>
 </div>
+
+## Options
+```
+finshir 0.1.0
+Temirkhan Myrzamadi <gymmasssorla@gmail.com>
+A coroutines-driven Low & Slow traffic sender, written in Rust
+
+USAGE:
+    finshir [FLAGS] [OPTIONS] --receiver <SOCKET-ADDRESS>
+
+FLAGS:
+    -h, --help       Prints help information
+        --use-tor    Torify all sockets by connecting to a SOCKS5 proxy running
+                     on 127.0.0.1:9050
+    -V, --version    Prints version information
+
+OPTIONS:
+        --connect-timeout <TIME-SPAN>
+            If a timeout is reached and a socket wasn't connected, the program
+            will retry the operation later.
+            
+            Note that this option currently doesn't work on sockets which are
+            trying to connect through Tor. [default: 30secs]
+    -c, --connections <POSITIVE-INTEGER>
+            A number of connections the program will handle simultaneously. This
+            option also equals to a number of coroutines.
+            
+            Before using this option consider modifying a default limit of
+            opened file descriptors using `sudo ulimit -n <COUNT>`. [default:
+            1000]
+        --date-time-format <STRING>
+            A format for displaying local date and time in log messages. Type
+            `man strftime` to see the format specification.
+            
+            Specifying a different format with days of weeks might be helpful
+            when you want to test a server more than one day. [default: %X]
+        --failed-count <POSITIVE-INTEGER>
+            A number of failed data transmissions used to reconnect a socket to
+            a remote web server [default: 5]
+        --ip-ttl <UNSIGNED-INTEGER>
+            Specifies the IP_TTL value for all future sockets. Usually this
+            value equals a number of routers that a packet can go through
+    -f, --portions-file <LOCATION>
+            A location to a file consisting of a single JSON array of data
+            portions, specified as strings.
+            
+            If an amount of data portions is reached on a certain connection, a
+            connection will be reopened. [default: finshir.json]
+    -r, --receiver <SOCKET-ADDRESS>
+            A receiver of generator traffic, specified as an IP address and a
+            port number, separated by a colon
+    -d, --test-duration <TIME-SPAN>
+            A whole test duration, after which all spawned coroutines will stop
+            their work [default: 64years 64hours 64secs]
+    -v, --verbosity <LEVEL>
+            Enable one of the possible verbosity levels. The zero level doesn't
+            print anything, and the last level prints everything [default: 3]
+            [possible values: 0, 1, 2, 3, 4, 5]
+    -w, --wait <TIME-SPAN>
+            A waiting time span before test execution used to prevent a launch
+            of an erroneous (unwanted) test [default: 5secs]
+        --write-periodicity <TIME-SPAN>
+            A time interval between writing data portions. This option can be
+            used to modify test intensity [default: 30secs]
+        --write-timeout <TIME-SPAN>
+            If a timeout is reached and a data portion wasn't sent, the program
+            will retry the operation later [default: 30secs]
+
+For more information see <https://github.com/Gymmasssorla/finshir>.
+```
