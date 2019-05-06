@@ -79,11 +79,6 @@ fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
         let mut socket: MaySocket = connect_socket(&config.socket_config);
 
         for &portion in portions {
-            if start.elapsed() >= config.test_duration {
-                info!("The allotted time has passed. The coroutine has exited.");
-                return;
-            }
-
             match send_portion(&mut socket, portion, config.failed_count) {
                 SendPortionResult::Success => {
                     info!(
@@ -101,6 +96,11 @@ fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
                     );
                     break;
                 }
+            }
+
+            if start.elapsed() + config.write_periodicity >= config.test_duration {
+                info!("The allotted time has passed. The coroutine has exited.");
+                return;
             }
 
             coroutine::sleep(config.write_periodicity);
