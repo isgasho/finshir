@@ -29,6 +29,28 @@
   </h4>
 </div>
 
+## Installation
+
+### Building from crates.io
+```bash
+$ cargo install finshir
+```
+
+### Building from sources
+```bash
+$ git clone https://github.com/Gymmasssorla/finshir.git
+$ cd finshir
+$ cargo build --release
+```
+
+### Pre-compiled binaries
+```bash
+$ wget https://github.com/Gymmasssorla/finshir/releases/download/<VERSION>/finshir-x86_64-linux
+$ chmod a+x finshir-x86_64-linux
+$ ./finshir-x86_64-linux
+```
+
+
 ## Getting started
  1. Finshir operates a JSON array of data portions to send. Simply put it into `<CURRENT-DIRECTORY>/finshir.json` so the program would understand which file to use (taken from [files/finshir.json](https://github.com/Gymmasssorla/finshir/blob/master/files/finshir.json)):
 
