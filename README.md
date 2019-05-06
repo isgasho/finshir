@@ -138,6 +138,9 @@ For more information see <https://github.com/Gymmasssorla/finshir>.
 <div align="center">
   <h3>Initialisation</h3>
   <img src="gallery/INITIALISATION.png">
+  
+  <h3>Errors</h3>
+  <img src="gallery/ERRORS.png">
 </div>
 
 ----------
