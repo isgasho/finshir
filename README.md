@@ -29,6 +29,8 @@
   </h4>
 </div>
 
+----------
+
 ## Installation
 
 ### Building from crates.io
@@ -50,6 +52,7 @@ $ chmod a+x finshir-x86_64-linux
 $ ./finshir-x86_64-linux
 ```
 
+----------
 
 ## Getting started
  1. Finshir operates a JSON array of data portions to send. Simply put it into `<CURRENT-DIRECTORY>/finshir.json` so the program would understand which file to use (taken from [files/finshir.json](https://github.com/Gymmasssorla/finshir/blob/master/files/finshir.json)):
@@ -70,6 +73,8 @@ $ ./finshir-x86_64-linux
 ```
 
  2. Next, execute `finshir --receiver=64.233.165.113:80` (Google's IP). This will perform an endless loop sending the next partial HTTP header each iteration, thereby order the server to wait as long as it can.
+
+----------
 
 ## Options
 ```
