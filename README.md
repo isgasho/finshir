@@ -42,6 +42,7 @@
  - [Gallery](https://github.com/Gymmasssorla/finshir#gallery)
    - [Initialisation](https://github.com/Gymmasssorla/finshir#initialisation)
    - [Errors](https://github.com/Gymmasssorla/finshir#errors)
+   - [Being verbose](https://github.com/Gymmasssorla/finshir#being-verbose)
  - [Contributing](https://github.com/Gymmasssorla/finshir#contributing)
  - [Legal disclaimer](https://github.com/Gymmasssorla/finshir#legal-disclaimer)
  - [Contacts](https://github.com/Gymmasssorla/finshir#contacts)
@@ -158,6 +159,9 @@ For more information see <https://github.com/Gymmasssorla/finshir>.
   
   <h3>Errors</h3>
   <img src="gallery/ERRORS.png">
+  
+  <h3>Being verbose</h3>
+  <img src="gallery/VERBOSE.png">
 </div>
 
 ----------
