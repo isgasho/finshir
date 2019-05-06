@@ -78,12 +78,12 @@ fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
     loop {
         let mut socket: MaySocket = connect_socket(&config.socket_config);
 
-        if start.elapsed() >= config.test_duration {
-            info!("The allotted time has expired. Exiting the coroutine...");
-            return;
-        }
-
         for &portion in portions {
+            if start.elapsed() >= config.test_duration {
+                info!("The allotted time has expired. Exiting the coroutine...");
+                return;
+            }
+
             match send_portion(&mut socket, portion, config.failed_count) {
                 SendPortionResult::Success => {
                     info!(
