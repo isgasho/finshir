@@ -34,8 +34,8 @@ use structopt::StructOpt;
     set_term_width = 80
 )]
 pub struct ArgsConfig {
-    /// A waiting time span before a test execution used to prevent a launch of
-    /// an erroneous (unwanted) test
+    /// A waiting time span before test execution used to prevent a launch of an
+    /// erroneous (unwanted) test
     #[structopt(
         short = "w",
         long = "wait",
@@ -97,8 +97,8 @@ pub struct SocketConfig {
     /// If a timeout is reached and a socket wasn't connected, the program will
     /// retry the operation later.
     ///
-    /// Note that this option currently doesn't work for sockets which are
-    /// trying to connect through Tor.
+    /// Note that this option currently doesn't work on sockets which are trying
+    /// to connect through Tor.
     #[structopt(
         long = "connect-timeout",
         takes_value = true,

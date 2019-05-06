@@ -26,6 +26,8 @@ use time;
 
 use super::config::LoggingConfig;
 
+/// Setups the logging system from `LoggingConfig`. Before this function,
+/// neither of log's macros such as `info!` won't work.
 pub fn setup_logging(logging_config: &LoggingConfig) {
     let colors = ColoredLevelConfig::new()
         .info(Color::Green)

@@ -27,7 +27,7 @@ use serde_json;
 
 pub type ReadPortionsResult = Result<Vec<Vec<u8>>, ReadPortionsError>;
 
-// Extracts data portions from a specified file
+/// Extracts data portions from a specified file.
 pub fn read_portions<P: AsRef<Path>>(path: P) -> ReadPortionsResult {
     let file = File::open(path).map_err(ReadPortionsError::ReadFailed)?;
 
@@ -40,10 +40,10 @@ pub fn read_portions<P: AsRef<Path>>(path: P) -> ReadPortionsResult {
 
 #[derive(Debug)]
 pub enum ReadPortionsError {
-    // Used when the function cannot read file content.
+    /// Used when the function cannot read file content.
     ReadFailed(io::Error),
 
-    // Used when the function cannot parse JSON structure.
+    /// Used when the function cannot parse JSON structure.
     JsonParseFailed(serde_json::Error),
 }
 
@@ -66,7 +66,7 @@ pub fn cyan<S: ToString>(value: S) -> ColoredString {
 mod tests {
     use super::*;
 
-    // Test that `read_portions()` reads all the portions correctly
+    /// Test that `read_portions()` reads all the portions correctly.
     #[test]
     fn reads_all_portions() {
         let res = read_portions("files/test.json").expect("Failed to parse JSON");
