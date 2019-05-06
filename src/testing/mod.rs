@@ -16,7 +16,7 @@
 //
 // For more information see <https://github.com/Gymmasssorla/finshir>.
 
-use std::io::{self, Read, Write};
+use std::io::{self, Write};
 use std::num::NonZeroUsize;
 use std::os::unix::io::{FromRawFd, IntoRawFd};
 use std::time::Instant;
