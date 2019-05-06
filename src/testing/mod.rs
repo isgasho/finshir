@@ -99,7 +99,10 @@ fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
             }
 
             if start.elapsed() + config.write_periodicity >= config.test_duration {
-                info!("The allotted time has passed. The coroutine has exited.");
+                info!(
+                    "No more data could be send due to the allotted time. The coroutine has \
+                     exited."
+                );
                 return;
             }
 
