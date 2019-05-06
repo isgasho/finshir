@@ -21,6 +21,8 @@
   
   You are seeing a high-performant, coroutines-driven, and fully customisable implementation of [Low & Slow](https://www.cloudflare.com/learning/ddos/ddos-low-and-slow-attack/) load generator designed for real-world pentesting. Its complete undetectability is achieved by connecting through [Tor](https://en.wikipedia.org/wiki/Tor_%28anonymity_network%29).
   
+  Finshir was designed to be convenient and flexible at the same time, which means that you are able to transmit arbitrary data sets over the [TCP protocol](https://en.wikipedia.org/wiki/Transmission_Control_Protocol).
+  
   <h4>
     <a href="https://github.com/Gymmasssorla/finshir/pulse">Pulse</a> &middot;
     <a href="https://github.com/Gymmasssorla/finshir/stargazers">Stargazers</a> &middot;
@@ -28,6 +30,11 @@
     <a href="https://github.com/Gymmasssorla/finshir/blob/master/CONTRIBUTING.md">Contributing</a>
   </h4>
 </div>
+
+## Getting started
+ 1. Specify a file consisting of a JSON array to transmit. I know this's quite boring to write your own for the first time, so you can use [this one](https://github.com/Gymmasssorla/finshir/blob/master/files/google.json) for https://www.google.com/.
+ 
+ 2. Put a JSON file to your current directory and execute `finshir --receiver=64.233.165.113:80` (Google's IP). This will perform an endless loop sending the next data portion each iteration.
 
 ## Options
 ```
