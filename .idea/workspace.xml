@@ -7,7 +7,7 @@
     <list default="true" id="67208693-eb9a-4213-b448-bf3b8dccb2df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/google.json" beforeDir="false" afterPath="$PROJECT_DIR$/files/finshir.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/finshir.json" beforeDir="false" afterPath="$PROJECT_DIR$/files/google.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +37,8 @@
       <find>trace</find>
       <find>pub</find>
       <find>process</find>
+      <find>finshir</find>
+      <find>json</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -52,12 +54,12 @@
         <option value="$PROJECT_DIR$/finshir.json" />
         <option value="$PROJECT_DIR$/Cargo.toml" />
         <option value="$PROJECT_DIR$/src/logging.rs" />
-        <option value="$PROJECT_DIR$/src/config.rs" />
         <option value="$PROJECT_DIR$/src/testing.rs" />
         <option value="$PROJECT_DIR$/src/helpers.rs" />
         <option value="$PROJECT_DIR$/src/main.rs" />
         <option value="$PROJECT_DIR$/src/testing/mod.rs" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/config.rs" />
       </list>
     </option>
   </component>
@@ -95,12 +97,6 @@
               <item name="finshir" type="b2602c69:ProjectViewProjectNode" />
               <item name="finshir" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="finshir" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finshir" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="testing" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -307,7 +303,7 @@
       <window_info id="Job Explorer" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969433" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5742358" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25436682" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -315,7 +311,7 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Console" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.057860263" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.6200873" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32969433" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -403,13 +399,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="134" column="78" lean-forward="true" selection-start-line="134" selection-start-column="78" selection-end-line="134" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/testing/helpers.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -446,20 +435,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/files/google.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="459">
-            <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <first_editor relative-caret-position="59">
+            <caret line="57" column="144" selection-start-line="57" selection-start-column="144" selection-end-line="57" selection-end-column="144" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/files/finshir.json">
+    <entry file="file://$PROJECT_DIR$/src/config.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        <state relative-caret-position="187">
+          <caret line="41" column="18" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
         </state>
       </provider>
     </entry>
