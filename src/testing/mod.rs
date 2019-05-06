@@ -19,14 +19,15 @@
 use std::io::{self, Write};
 use std::num::NonZeroUsize;
 use std::os::unix::io::{FromRawFd, IntoRawFd};
+use std::time::Instant;
 
 use humantime::format_duration;
 use may::{self, coroutine, go};
 use tor_stream::TorStream;
 
 use crate::config::{ArgsConfig, SocketConfig, TesterConfig};
-use crate::helpers;
-use std::time::Instant;
+
+mod helpers;
 
 type StdSocket = std::net::TcpStream;
 type MaySocket = may::net::TcpStream;
