@@ -21,16 +21,53 @@ use std::num::NonZeroUsize;
 use std::os::unix::io::{FromRawFd, IntoRawFd};
 
 use humantime::format_duration;
-use may::coroutine;
+use may::{self, coroutine, go};
 use tor_stream::TorStream;
 
-use crate::config::{SocketConfig, TesterConfig};
+use crate::config::{ArgsConfig, SocketConfig, TesterConfig};
 use crate::helpers;
 
 type StdSocket = std::net::TcpStream;
 type MaySocket = may::net::TcpStream;
 
-pub fn run(config: &TesterConfig, portions: &[&[u8]]) {
+pub fn run(config: &ArgsConfig) -> i32 {
+    let portions = match helpers::read_portions(&config.portions_file) {
+        Err(err) => {
+            error!("Failed to parse the JSON >>> {}!", err);
+            return 1;
+        }
+        Ok(res) => res,
+    };
+    let portions: Vec<&[u8]> = portions.iter().map(Vec::as_slice).collect();
+
+    warn!(
+        "Waiting {} and then spawning {} coroutines connected through the {}.",
+        helpers::cyan(format_duration(config.wait)),
+        helpers::cyan(config.connections),
+        if config.tester_config.socket_config.use_tor {
+            "Tor network"
+        } else {
+            "regular Web"
+        }
+    );
+    std::thread::sleep(config.wait);
+
+    coroutine::scope(|scope| {
+        let portions = &portions;
+        let config = &config;
+        let iters = config.connections.get();
+
+        for _ in 0..iters {
+            go!(scope, move || run_tester(&config.tester_config, portions));
+        }
+
+        info!("All the coroutines have been spawned.");
+    });
+
+    return 0;
+}
+
+fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
     let fmt_per = helpers::cyan(format_duration(config.write_periodicity));
 
     loop {

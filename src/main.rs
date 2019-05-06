@@ -22,8 +22,6 @@
 extern crate log;
 
 use colored::Colorize;
-use humantime::format_duration;
-use may::{self, coroutine, go};
 use structopt::StructOpt;
 
 use crate::config::ArgsConfig;
@@ -40,35 +38,7 @@ fn main() {
     logging::setup_logging(&config.logging_config);
     trace!("{:?}", config);
 
-    let portions = helpers::read_portions(&config.portions_file).unwrap_or_else(|err| {
-        error!("Failed to parse the JSON >>> {}!", err);
-        std::process::exit(1);
-    });
-    let portions: Vec<&[u8]> = portions.iter().map(Vec::as_slice).collect();
-
-    warn!(
-        "Waiting {} and then spawning {} coroutines connected through the {}.",
-        helpers::cyan(format_duration(config.wait)),
-        helpers::cyan(config.connections),
-        if config.tester_config.socket_config.use_tor {
-            "Tor network"
-        } else {
-            "regular Web"
-        }
-    );
-    std::thread::sleep(config.wait);
-
-    coroutine::scope(|scope| {
-        let portions = &portions;
-        let config = &config;
-        let iters = config.connections.get();
-
-        for _ in 0..iters {
-            go!(scope, move || testing::run(&config.tester_config, portions));
-        }
-
-        info!("All the coroutines have been spawned.");
-    });
+    std::process::exit(testing::run(&config));
 }
 
 fn title() {
