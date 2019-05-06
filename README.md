@@ -55,22 +55,7 @@ $ ./finshir-x86_64-linux
 ----------
 
 ## Getting started
- 1. Finshir operates a JSON array of data portions to send. Simply put it into `<CURRENT-DIRECTORY>/finshir.json` so the program would understand which file to use (taken from [files/finshir.json](https://github.com/Gymmasssorla/finshir/blob/master/files/finshir.json)):
-
-```json
-[
-  "GET / HTTP/1.1\r\n",
-  "Host: www.google.com",
-  "User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0\r\n",
-  "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-  "Accept-Language: en-US,en;q=0.5",
-  "Accept-Encoding: gzip, deflate, br",
-  "Connection: keep-alive",
-  "Upgrade-Insecure-Requests: 1",
-  "Cache-Control: max-age=0",
-  "TE: Trailers"
-]
-```
+ 1. Finshir operates a JSON array of data portions to send. Simply copy [this](https://github.com/Gymmasssorla/finshir/blob/master/files/finshir.json) into `<CURRENT-DIRECTORY>/finshir.json` so the program would understand which file to use.
 
  2. Next, execute `finshir --receiver=64.233.165.113:80` (Google's IP). This will perform an endless loop sending the next partial HTTP header each iteration, thereby order the server to wait as long as it can.
 
