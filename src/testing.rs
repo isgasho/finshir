@@ -26,6 +26,7 @@ use tor_stream::TorStream;
 
 use crate::config::{ArgsConfig, SocketConfig, TesterConfig};
 use crate::helpers;
+use std::time::Instant;
 
 type StdSocket = std::net::TcpStream;
 type MaySocket = may::net::TcpStream;
@@ -69,11 +70,17 @@ pub fn run(config: &ArgsConfig) -> i32 {
 
 fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
     let fmt_per = helpers::cyan(format_duration(config.write_periodicity));
+    let start = Instant::now();
 
     loop {
         let mut socket: MaySocket = connect_socket(&config.socket_config);
 
         for &portion in portions {
+            if start.elapsed() >= config.test_duration {
+                info!("The allotted time has passed. The coroutine has exited.");
+                return;
+            }
+
             match send_portion(&mut socket, portion, config.failed_count) {
                 SendPortionResult::Success => {
                     info!(

@@ -133,7 +133,7 @@ pub struct SocketConfig {
 #[derive(StructOpt, Debug, Clone, Eq, PartialEq)]
 pub struct TesterConfig {
     /// A time interval between writing data portions. This option can be used
-    /// to decrease test intensity
+    /// to modify test intensity
     #[structopt(
         long = "write-periodicity",
         takes_value = true,
@@ -153,6 +153,18 @@ pub struct TesterConfig {
         parse(try_from_str = "parse_non_zero_usize")
     )]
     pub failed_count: NonZeroUsize,
+
+    /// A whole test duration, after which all spawned coroutines will stop
+    /// their work
+    #[structopt(
+        short = "d",
+        long = "test-duration",
+        takes_value = true,
+        value_name = "TIME-SPAN",
+        default_value = "64years 64hours 64secs",
+        parse(try_from_str = "parse_duration")
+    )]
+    pub test_duration: Duration,
 
     #[structopt(flatten)]
     pub socket_config: SocketConfig,
