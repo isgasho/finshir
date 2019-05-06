@@ -32,7 +32,7 @@
 ## Getting started
  1. Specify a file consisting of a JSON array to transmit. I know this's quite boring to write your own for the first time, so you can use [this one](https://github.com/Gymmasssorla/finshir/blob/master/files/finshir.json) for https://www.google.com/.
  
- 2. Put a JSON file to your current directory and execute `finshir --receiver=64.233.165.113:80` (Google's IP). This will perform an endless loop sending the next data portion each iteration.
+ 2. Put the file to your current directory and execute `finshir --receiver=64.233.165.113:80` (Google's IP). This will perform an endless loop sending the next data portion each iteration.
 
 ## Options
 ```
