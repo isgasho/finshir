@@ -133,6 +133,15 @@ For more information see <https://github.com/Gymmasssorla/finshir>.
 
 ----------
 
+## Gallery
+
+<div align="center">
+  <h3>Initialisation</h3>
+  <img src="gallery/INITIALISATION.png">
+</div>
+
+----------
+
 ## Contributing
 You are always welcome for any contribution to this project! But before you start, you should read [the appropriate document](https://github.com/Gymmasssorla/finshir/blob/master/CONTRIBUTING.md) to know about the preferred development process and the basic communication rules.
 
