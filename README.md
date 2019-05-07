@@ -31,6 +31,11 @@
 
 ----------
 
+## Features
+ - **Coroutines-driven.** Finshir uses [coroutines](https://en.wikipedia.org/wiki/Coroutine) instead of ordinary threads, which lets you open many more TCP connections with fewer system resources.
+
+----------
+
 ## Installation
 
 ### Building from crates.io
