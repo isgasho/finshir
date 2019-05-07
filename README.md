@@ -105,17 +105,10 @@ OPTIONS:
             trying to connect through Tor. [default: 30secs]
     -c, --connections <POSITIVE-INTEGER>
             A number of connections the program will handle simultaneously. This
-            option also equals to a number of coroutines.
-            
-            Before using this option consider modifying a default limit of
-            opened file descriptors using `sudo ulimit -n <COUNT>`. [default:
-            1000]
+            option also equals to a number of coroutines [default: 1000]
         --date-time-format <STRING>
             A format for displaying local date and time in log messages. Type
-            `man strftime` to see the format specification.
-            
-            Specifying a different format with days of weeks might be helpful
-            when you want to test a server more than one day. [default: %X]
+            `man strftime` to see the format specification [default: %X]
         --failed-count <POSITIVE-INTEGER>
             A number of failed data transmissions used to reconnect a socket to
             a remote web server [default: 5]
@@ -123,11 +116,8 @@ OPTIONS:
             Specifies the IP_TTL value for all future sockets. Usually this
             value equals a number of routers that a packet can go through
     -f, --portions-file <LOCATION>
-            A location to a file consisting of a single JSON array of data
-            portions, specified as strings.
-            
-            If an amount of data portions is reached on a certain connection, a
-            connection will be reopened. [default: finshir.json]
+            A file consisting of a custom JSON array of data portions, specified
+            as strings
     -r, --receiver <SOCKET-ADDRESS>
             A receiver of generator traffic, specified as an IP address and a
             port number, separated by a colon
@@ -147,6 +137,9 @@ OPTIONS:
         --write-timeout <TIME-SPAN>
             If a timeout is reached and a data portion wasn't sent, the program
             will retry the operation later [default: 30secs]
+
+By default, Finshir generates 100 empty spaces as data portions. If you want to
+override this behaviour, consider using the `--portions-file` option.
 
 For more information see <https://github.com/Gymmasssorla/finshir>.
 ```

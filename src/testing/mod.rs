@@ -35,7 +35,7 @@ type MaySocket = may::net::TcpStream;
 /// This is the key function which accepts `ArgsConfig` and spawns all
 /// coroutines, returning 0 on success and 1 on failure.
 pub fn run(config: &ArgsConfig) -> i32 {
-    let portions = match helpers::read_portions(&config.portions_file) {
+    let portions = match helpers::get_portions(config.portions_file.as_ref()) {
         Err(err) => {
             error!("Failed to parse the JSON >>> {}!", err);
             return 1;

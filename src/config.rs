@@ -30,7 +30,9 @@ use structopt::StructOpt;
 #[structopt(
     author = "Temirkhan Myrzamadi <gymmasssorla@gmail.com>",
     about = "A coroutines-driven Low & Slow traffic sender, written in Rust",
-    after_help = "For more information see <https://github.com/Gymmasssorla/finshir>.",
+    after_help = "By default, Finshir generates 100 empty spaces as data portions. If you want to \
+                  override this behaviour, consider using the `--portions-file` option.\n\nFor \
+                  more information see <https://github.com/Gymmasssorla/finshir>.",
     set_term_width = 80
 )]
 pub struct ArgsConfig {
@@ -46,25 +48,18 @@ pub struct ArgsConfig {
     )]
     pub wait: Duration,
 
-    /// A location to a file consisting of a single JSON array of data portions,
-    /// specified as strings.
-    ///
-    /// If an amount of data portions is reached on a certain connection, a
-    /// connection will be reopened.
+    /// A file consisting of a custom JSON array of data portions, specified as
+    /// strings
     #[structopt(
         short = "f",
         long = "portions-file",
         takes_value = true,
-        value_name = "LOCATION",
-        default_value = "finshir.json"
+        value_name = "LOCATION"
     )]
-    pub portions_file: PathBuf,
+    pub portions_file: Option<PathBuf>,
 
     /// A number of connections the program will handle simultaneously. This
-    /// option also equals to a number of coroutines.
-    ///
-    /// Before using this option consider modifying a default limit of opened
-    /// file descriptors using `sudo ulimit -n <COUNT>`.
+    /// option also equals to a number of coroutines
     #[structopt(
         short = "c",
         long = "connections",
@@ -190,10 +185,7 @@ pub struct LoggingConfig {
     pub verbosity: i32,
 
     /// A format for displaying local date and time in log messages. Type `man
-    /// strftime` to see the format specification.
-    ///
-    /// Specifying a different format with days of weeks might be helpful when
-    /// you want to test a server more than one day.
+    /// strftime` to see the format specification
     #[structopt(
         long = "date-time-format",
         takes_value = true,
