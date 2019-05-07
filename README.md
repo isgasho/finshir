@@ -42,8 +42,8 @@
    - [Minimal command](https://github.com/Gymmasssorla/finshir#minimal-command)
    - [Using the Tor network](https://github.com/Gymmasssorla/finshir#using-the-tor-network)
    - [Test intensity](https://github.com/Gymmasssorla/finshir#test-intensity)
-   - [Custom data portions](https://github.com/Gymmasssorla/finshir#custom-data-portions)
    - [Connections count](https://github.com/Gymmasssorla/finshir#connections-count)
+   - [Custom data portions](https://github.com/Gymmasssorla/finshir#custom-data-portions)
    - [Logging options](https://github.com/Gymmasssorla/finshir#logging-options)
  - [Gallery](https://github.com/Gymmasssorla/finshir#gallery)
    - [Initialisation](https://github.com/Gymmasssorla/finshir#initialisation)
@@ -178,15 +178,6 @@ Low & Slow techniques assume to be VERY SLOW, which means that you typically sen
 $ finshir --receiver=64.233.165.113:80 --write-periodicity=1min
 ```
 
-
-### Custom data portions
-By default, Finshir generates 100 empty spaces as data portions to send. You can override this behaviour by specifying your custom messages as a file, consisting of a single JSON array. This example is focused on Google:
-
-```bash
-# Send partial HTTP headers to Google using `--portions-file`
-$ finshir --receiver=64.233.165.113:80 --portions-file files/google.json
-```
-
 ### Connections count
 The default number of parallel connections is 1000. However, you can modify this limit using the `--connections` option, but be sure that you system is able to handle such amount of file descriptors:
 
@@ -196,6 +187,14 @@ $ sudo ulimit -n 17000
 
 # Test the target server using 17000 parallel TCP connections
 $ finshir --receiver=64.233.165.113:80 --connections=17000
+```
+
+### Custom data portions
+By default, Finshir generates 100 empty spaces as data portions to send. You can override this behaviour by specifying your custom messages as a file, consisting of a single JSON array. This example is focused on Google:
+
+```bash
+# Send partial HTTP headers to Google using `--portions-file`
+$ finshir --receiver=64.233.165.113:80 --portions-file files/google.json
 ```
 
 ### Logging options
