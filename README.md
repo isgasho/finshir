@@ -156,7 +156,7 @@ For more information see <https://github.com/Gymmasssorla/finshir>.
 ## Overview
 
 ### Minimal command
-The following command spawns 1000 coroutines, each trying to establish a new TCP connection. When connections are established, it sends random bytes every 30 seconds, thereby order a server to wait as long as it can:
+The following command spawns 1000 coroutines, each trying to establish a new TCP connection. When connections are established, it sends empty spaces every 30 seconds, thereby order a server to wait as long as it can:
 
 ```bash
 # Specify one of the Google's IP addresses as a target web server
