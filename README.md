@@ -81,34 +81,6 @@ $ ./finshir-x86_64-linux
 
 ----------
 
-## Overview
-
-### Minimal command
-The following command spawns 1000 coroutines, each trying to establish a new TCP connection. When connections are established, it sends random bytes every 30 seconds, thereby order a server to wait as long as it can:
-
-```bash
-# Specify one of the Google's IP addresses as a target web server
-$ finshir --receiver=64.233.165.113:80
-```
-
-### Using the Tor network
-You can do this by specifying the `--use-tor` flag. It connects to your local SOCKS5 proxy running on 9050 port, which is typically used by Tor proxies. Also consider modifying the default configuration file located in `/etc/tor/torrc`.
-
-```bash
-# Connect to the Google's address through your local Tor proxy
-$ finshir --receiver=64.233.165.113:80 --use-tor
-```
-
-### Logging options
-Consider specifying a custom verbosity level from 0 to 5 (inclusively), which is done by the `--verbosity` option. There is also the `--date-time-format` option which tells Finshir to use your custom date-time format.
-
-```bash
-# Use a custom date-time format and the last verbosity level
-$ finshir --receiver=64.233.165.113:80 --date-time-format "%F" --verbosity 5
-```
-
-----------
-
 ## Options
 ```
 finshir 0.1.0
@@ -177,6 +149,34 @@ OPTIONS:
             will retry the operation later [default: 30secs]
 
 For more information see <https://github.com/Gymmasssorla/finshir>.
+```
+
+----------
+
+## Overview
+
+### Minimal command
+The following command spawns 1000 coroutines, each trying to establish a new TCP connection. When connections are established, it sends random bytes every 30 seconds, thereby order a server to wait as long as it can:
+
+```bash
+# Specify one of the Google's IP addresses as a target web server
+$ finshir --receiver=64.233.165.113:80
+```
+
+### Using the Tor network
+You can do this by specifying the `--use-tor` flag. It connects to your local SOCKS5 proxy running on 9050 port, which is typically used by Tor proxies. Also consider modifying the default configuration file located in `/etc/tor/torrc`.
+
+```bash
+# Connect to the Google's address through your local Tor proxy
+$ finshir --receiver=64.233.165.113:80 --use-tor
+```
+
+### Logging options
+Consider specifying a custom verbosity level from 0 to 5 (inclusively), which is done by the `--verbosity` option. There is also the `--date-time-format` option which tells Finshir to use your custom date-time format.
+
+```bash
+# Use a custom date-time format and the last verbosity level
+$ finshir --receiver=64.233.165.113:80 --date-time-format "%F" --verbosity 5
 ```
 
 ----------
