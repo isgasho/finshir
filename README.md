@@ -42,7 +42,7 @@
    - [Minimal command](https://github.com/Gymmasssorla/finshir#minimal-command)
    - [Using the Tor network](https://github.com/Gymmasssorla/finshir#using-the-tor-network)
    - [Test intensity](https://github.com/Gymmasssorla/finshir#test-intensity)
-   - [Custom portions](https://github.com/Gymmasssorla/finshir#custom-portions)
+   - [Custom data portions](https://github.com/Gymmasssorla/finshir#custom-data-portions)
    - [Connections count](https://github.com/Gymmasssorla/finshir#connections-count)
    - [Logging options](https://github.com/Gymmasssorla/finshir#logging-options)
  - [Gallery](https://github.com/Gymmasssorla/finshir#gallery)
@@ -179,7 +179,7 @@ $ finshir --receiver=64.233.165.113:80 --write-periodicity=1min
 ```
 
 
-### Custom portions
+### Custom data portions
 By default, Finshir generates 100 empty spaces as data portions to send. You can override this behaviour by specifying your custom messages as a file, consisting of a single JSON array. This example is focused on Google:
 
 ```bash
