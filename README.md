@@ -83,11 +83,9 @@ $ ./finshir-x86_64-linux
 
 ## Overview
 
-### How does it work?
-Finshir reads a file consisting of a JSON array of data portions. For the first time you may simply paste [this](https://github.com/Gymmasssorla/finshir/blob/master/files/google.json) into `<CURRENT-DIRECTORY>/finshir.json` so the program would understand which file to use.
+### Minimal command
+The following command spawns 1000 coroutines, each trying to establish a new TCP connection to a target web server. When connections are established, it sends random bytes every 30 seconds, thereby order a server to wait as long as it can:
 
-The following command spawns 1000 coroutines by default, each trying to establish a new TCP connection to a target web server. When connections are established, it sends specified data portions one-by-one every 30 seconds, thereby order a server to wait as long as it can:
- 
 ```bash
 # Specify one of the Google's IP addresses as a target web server
 $ finshir --receiver=64.233.165.113:80
