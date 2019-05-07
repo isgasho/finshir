@@ -32,7 +32,7 @@
 ----------
 
 ## Features
- - **Coroutines-driven.** Finshir uses [coroutines](https://en.wikipedia.org/wiki/Coroutine) instead of ordinary threads, which lets you open many more TCP connections with fewer system resources.
+ - **Coroutines-driven.** Finshir uses [coroutines](https://en.wikipedia.org/wiki/Coroutine) instead of ordinary threads, which lets you open many more connections with fewer system resources.
 
  - **Generic.** Unlike other Low & Slow utilities, Finshir lets you transmit arbitrary data sets over the [TCP](https://en.m.wikipedia.org/wiki/Transmission_Control_Protocol) protocol. It may be partial HTTP headers, empty spaces, and so on.
 
