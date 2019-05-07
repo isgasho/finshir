@@ -72,7 +72,6 @@ pub fn run(config: &ArgsConfig) -> i32 {
 }
 
 fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
-    let fmt_per = helpers::cyan(format_duration(config.write_periodicity));
     let start = Instant::now();
 
     loop {
@@ -89,7 +88,7 @@ fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
                     info!(
                         "{} bytes have been sent. Waiting {}...",
                         helpers::cyan(portion.len()),
-                        fmt_per
+                        helpers::cyan(format_duration(config.write_periodicity))
                     );
                 }
                 SendPortionResult::Failed(err) => {
