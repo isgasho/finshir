@@ -94,6 +94,9 @@ $ finshir --receiver=64.233.165.113:80
 ### Using the Tor network
 You can do this by specifying the `--use-tor` flag. It connects to your local SOCKS5 proxy running on 9050 port, which is typically used by Tor proxies. Also consider modifying the default configuration file located in `/etc/tor/torrc`.
 
+### Logging options
+Consider specifying a custom verbosity level from 0 to 5 (inclusively), which is done by the `--verbosity` option. There is also the `--date-time-format` option which tells Finshir to use your custom date-time format.
+
 ----------
 
 ## Options
