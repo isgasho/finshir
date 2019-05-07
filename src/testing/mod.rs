@@ -86,14 +86,14 @@ fn run_tester(config: &TesterConfig, portions: &[&[u8]]) {
             match send_portion(&mut socket, portion, config.failed_count) {
                 SendPortionResult::Success => {
                     info!(
-                        "{} bytes have been sent. Waiting {}...",
+                        "{} byte(s) have been sent. Waiting {}...",
                         helpers::cyan(portion.len()),
                         helpers::cyan(format_duration(config.write_periodicity))
                     );
                 }
                 SendPortionResult::Failed(err) => {
                     error!(
-                        "Sending {} bytes failed {} times >>> {}! Reconnecting the socket...",
+                        "Sending {} byte(s) failed {} times >>> {}! Reconnecting the socket...",
                         helpers::cyan(portion.len()),
                         helpers::cyan(config.failed_count),
                         err,
@@ -126,7 +126,7 @@ fn send_portion(
                 Ok(_) => return SendPortionResult::Success,
                 Err(err) => {
                     error!(
-                        "Failed to send {} bytes >>> {}! Retrying the operation...",
+                        "Failed to send {} byte(s) >>> {}! Retrying the operation...",
                         helpers::cyan(portion.len()),
                         err
                     );
