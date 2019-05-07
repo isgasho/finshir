@@ -81,10 +81,20 @@ $ ./finshir-x86_64-linux
 
 ----------
 
-## Getting started
- 1. Finshir operates a JSON array of data portions to send. Simply copy [this](https://github.com/Gymmasssorla/finshir/blob/master/files/google.json) into `<CURRENT-DIRECTORY>/finshir.json` so the program would understand which file to use.
+## Overview
 
- 2. Next, execute `finshir --receiver=64.233.165.113:80` (Google's IP). This will perform an endless loop sending the next partial HTTP header each iteration, thereby order the server to wait as long as it can.
+### How does it work?
+ 1. Finshir reads a file consisting of a JSON array of data portions. For the first time you may simply paste [this](https://github.com/Gymmasssorla/finshir/blob/master/files/google.json) into `<CURRENT-DIRECTORY>/finshir.json` so the program would understand which file to use.
+ 
+ 2. The following command spawns one thousand coroutines by default, each trying to establish a new TCP connection to a target web server. When connections are established, it sends specified data portions one-by-one every 30 seconds, thereby order a server to wait as long as it can:
+ 
+```bash
+# Specify one of the Google's IP addresses as a target web server
+$ finshir --receiver=64.233.165.113:80
+```
+
+### Using the Tor network
+You can do this by specifying the `--use-tor` flag. It connects to your local SOCKS5 proxy running on 9050 port, which is typically used by Tor proxies. Also consider modifying the default configuration file located in `/etc/tor/torrc`.
 
 ----------
 
