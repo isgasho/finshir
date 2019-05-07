@@ -36,7 +36,7 @@
 
  - **Generic.** Unlike other Low & Slow utilities, Finshir lets you transmit arbitrary data sets over the [TCP](https://en.m.wikipedia.org/wiki/Transmission_Control_Protocol) protocol. It may be partial HTTP headers, empty spaces, and so on.
  
- - **Written in Rust.** How you can see, all the logic is written completely in Rust, which means that it leverages bare-metal performance and high-level safety.
+ - **Written in Rust.** How you can see, all the logic is written completely in [Rust](https://www.rust-lang.org/), which means that it leverages bare-metal performance and high-level safety.
 
 ----------
 
