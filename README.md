@@ -41,6 +41,7 @@
  - [Overview](https://github.com/Gymmasssorla/finshir#overview)
    - [Minimal command](https://github.com/Gymmasssorla/finshir#minimal-command)
    - [Using the Tor network](https://github.com/Gymmasssorla/finshir#using-the-tor-network)
+   - [Test intensity](https://github.com/Gymmasssorla/finshir#test-intensity)
    - [Custom portions](https://github.com/Gymmasssorla/finshir#custom-portions)
    - [Connections count](https://github.com/Gymmasssorla/finshir#connections-count)
    - [Logging options](https://github.com/Gymmasssorla/finshir#logging-options)
@@ -167,6 +168,14 @@ You can do this by specifying the `--use-tor` flag. It connects to your local SO
 ```bash
 # Connect to the Google's address through your local Tor proxy
 $ finshir --receiver=64.233.165.113:80 --use-tor
+```
+
+### Test intensity
+Low & Slow techniques assume to be VERY SLOW, which means that you typically send a couple of bytes every N seconds. For instance, Finshir uses the 30 seconds interval by default, but it's modifiable as well:
+
+```bash
+# Test the Google's server sending data portions every one minute
+$ finshir --receiver=64.233.165.113:80 --write-periodicity=1min
 ```
 
 
