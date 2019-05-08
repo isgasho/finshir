@@ -50,6 +50,7 @@
    - [Errors](https://github.com/Gymmasssorla/finshir#errors)
    - [Being verbose](https://github.com/Gymmasssorla/finshir#being-verbose)
  - [Contributing](https://github.com/Gymmasssorla/finshir#contributing)
+ - [Target platform](https://github.com/Gymmasssorla/finshir#target-platform)
  - [Legal disclaimer](https://github.com/Gymmasssorla/finshir#legal-disclaimer)
  - [Contacts](https://github.com/Gymmasssorla/finshir#contacts)
 
@@ -224,6 +225,11 @@ $ finshir --receiver=64.233.165.113:80 --date-time-format="%F" --verbosity=5
 
 ## Contributing
 You are always welcome for any contribution to this project! But before you start, you should read [the appropriate document](https://github.com/Gymmasssorla/finshir/blob/master/CONTRIBUTING.md) to know about the preferred development process and the basic communication rules.
+
+----------
+
+## Target platform
+Like most of pentesting utilities, this project is developed, tested, and maintained for only Linux-based systems. If you are a Windows user, you probably need a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine) or another computer with GNU/Linux.
 
 ----------
 
