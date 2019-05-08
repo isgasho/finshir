@@ -182,7 +182,7 @@ $ finshir --receiver=64.233.165.113:80 --write-periodicity=1min
 The default number of parallel connections is 1000. However, you can modify this limit using the `--connections` option, but be sure that you system is able to handle such amount of file descriptors:
 
 ```bash
-# Modify the default limit of file descriptors to 17000
+# Modify the default limit of file descriptors to 17015
 $ sudo ulimit -n 17015
 
 # Test the target server using 17000 parallel TCP connections
