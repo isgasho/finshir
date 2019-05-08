@@ -80,11 +80,7 @@ $ cargo build --release
 ```
 
 ### Pre-compiled binaries
-```bash
-$ wget https://github.com/Gymmasssorla/finshir/releases/download/<VERSION>/finshir-x86_64-linux
-$ chmod a+x finshir-x86_64-linux
-$ ./finshir-x86_64-linux
-```
+The easiest way to run Finshir on your system is to download the pre-compiled binaries from the [existing releases](https://github.com/Gymmasssorla/finshir/releases), which doesn't require any external software (unlike the two previous approaches).
 
 ----------
 
