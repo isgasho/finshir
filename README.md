@@ -66,6 +66,11 @@
 ----------
 
 ## Installation
+Currently, this project requires unstable standard library features, so this is why you must switch to the nightly channel to avoid compilation errors:
+
+```
+$ rustup override set nightly-2019-04-25
+```
 
 ### Building from crates.io
 ```bash
