@@ -52,6 +52,7 @@
  - [Contributing](https://github.com/Gymmasssorla/finshir#contributing)
  - [Target platform](https://github.com/Gymmasssorla/finshir#target-platform)
  - [Legal disclaimer](https://github.com/Gymmasssorla/finshir#legal-disclaimer)
+ - [Project links](https://github.com/Gymmasssorla/finshir#project-links)
  - [Contacts](https://github.com/Gymmasssorla/finshir#contacts)
 
 ----------
@@ -236,6 +237,12 @@ Like most of pentesting utilities, this project is developed, tested, and mainta
 
 ## Legal disclaimer
 Finshir was developed as a means of testing stress resistance of web servers, and not for hacking, that is, the author of the project **IS NOT RESPONSIBLE** for any damage caused by your use of his program.
+
+----------
+
+## Project links
+ - https://www.reddit.com/r/rust/comments/bm6ttn/finshir_a_coroutinesdriven_low_slow_ddos_attack/
+ - https://www.producthunt.com/posts/finshir
 
 ----------
 
